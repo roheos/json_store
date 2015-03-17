@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body onload="exportToGlobal.getFromMyJson();">
+<form name="jContent" action="javascript:exportToGlobal.saveJson();">
+<div id="editContent" style="color:#111111;"></div>
+<button type="submit">Save Changes</button><br>
+</form>
+<button onclick="javascript:exportToGlobal.addContent();">Add Entry</button>
+<div id="writeContent" style="color:#111111;"></div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var exportToGlobal = (function() {
+var my = {}; //used for exporting methods 
+var count=0;
+//var myJsonGetUrl='https://api.myjson.com/bins/2oi4z'; 
+//var myJsonPutUrl='https://api.myjson.com/bins/2oi4z'; // in this case really the same uris..
+
+var myJsonGetUrl='http://127.0.0.1:1212/1234'; 
+//var myJsonGetUrl='http://192.168.248.187:1212/1234'; 
+//var myJsonGetUrl='http://192.168.248.187/hbbtv/tmp/json_test.html'
+var myJsonPutUrl='http://127.0.0.1:1212/1234'; // 
+
+function fillEditContent (myJson) {
+    var mt='';
+    myJson.entrys.forEach(function(entry) {
+        count++;
+        mt += '<input type="text" name="vorname_' + count + '" value="' + entry.vorname + '">';
+        mt += '<input type="text" name="nachname_' + count + '" value="' + entry.nachname + '"><br />';
+    });
+    document.getElementById('editContent').innerHTML = mt;  
+}
+
+my.addContent = function addContent() {
+    var mt = document.getElementById('editContent').innerHTML;
+    count++;
+    mt += '<input type="text" name="vorname_' + count + '" value="vorname">';  
+    mt += '<input type="text" name="nachname_' + count + '" value="nachname"><br />'; 
+    document.getElementById('editContent').innerHTML = mt;
+ }
+
+my.saveJson = function saveJson() {
+    var jsonVar = {entrys: [] };
+    for (i = 1; i <= count; i++) { 
+        var fvorname = "vorname_" + i;
+        var fnachname = "nachname_" + i;
+        var jsonEntry={vorname:document.jContent.elements[fvorname].value, nachname:document.jContent.elements[fnachname].value};
+        if (document.jContent.elements[fvorname].value != '') { 
+            jsonVar.entrys.push(jsonEntry);
+        } 
+    }
+    pushToMyJson(jsonVar);
+}
+
+function pushToMyJson(myJson) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', myJsonPutUrl, false); //not asynchron, so set to false!
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Content-Length', JSON.stringify(myJson).length);
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr.setRequestHeader('Access-Control-Allow-Credentials','true');
+    xhr.send(JSON.stringify(myJson));
+    location.reload(true);
+}
+
+my.getFromMyJson = function getFromMyJson() {
+    var request = new XMLHttpRequest();
+    request.open('GET', myJsonGetUrl, true);
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+        //alert(request.status)    
+        var data = JSON.parse(request.responseText);
+        //only for reset/testing:
+        //data = JSON.parse('{ "entrys": [{ "vorname": "Anna", "nachname": "mueller"},{"vorname": "Lola", "nachname":"maier"}]}');
+        fillEditContent(data);
+      } else {
+        alert('some error1 ' + request.status);
+      }
+    };
+    request.onerror = function() {
+      alert('some error2 ' + request.status)
+    };
+    request.send();
+}
+
+return my;
+})();
+/* ]]> */
+</script>
+</body>
+</html>

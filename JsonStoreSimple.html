@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />    
+<title>JsonStoreSimple - A simple json file storage</title>
+<link href="./img/JsonStoreSimple.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+<link href="./css/JsonStoreSimple.css" media="all" rel="stylesheet" />
+<script src="./js/jQuery.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Nova+Square' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<script type="text/javascript" chartype='utf-8'>
+/* <![CDATA[ */
+var exportToGlobal = (function() {
+var my = {}; //used for exporting methods 
+var myJsonUrl='http://127.0.0.1:1212/';
+var actualId='new';
+
+my.postJson = function postJson() {
+    var myJson = document.jContent.elements['data'].value;
+    if (myJson == '') {alert('Please enter some valid JSON Data.')}
+    var data = JSON.parse(myJson);
+    data = JSON.stringify(data);
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      response = this.responseText;
+      if (response != '') {
+        actualId=response;
+        var mt="You can get your JSON data now here: <input type=text value='" + myJsonUrl + actualId +"' size='40'>";
+        mt += " <a href='" + myJsonUrl + response +"' target='_new'>#</a>";
+        document.getElementById('result').innerHTML = mt;
+        document.jContent.elements['data'].value = '';
+        actualId='new';
+      }
+    }
+    actualJsonUrl = myJsonUrl + actualId;
+    xhr.open('POST', actualJsonUrl, false); //not asynchron, so set to false!
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Content-Length', JSON.stringify(myJson).length);
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr.setRequestHeader('Access-Control-Allow-Credentials','true');
+    xhr.send(data);
+}
+
+my.fillWithTestData = function fillWithTestData() {
+    var mt='{"entrys":[{"vorname":"Önna","nachname":"müller"},{"vorname":"Lola","nachname":"maier"}]}';
+    document.jContent.elements['data'].value = mt;
+}
+
+my.writeSomeMessage = function writeSomeMessage(MType) {
+    var mt='';
+    if (MType == 'About') {
+        mt+='JSONstoreSimple is developed as there was no existing Solution in Github etc. <br />for storing any kind of JSON-Files over REST-Api<br />';
+        mt+='So the existing Solution is kind of very basic and simple - <br />it needs only a server with running node and the ability of installing npm-packes <br />';
+        mt+='This could be any cheap (virtual) "Root-Server" with shell login <br /></br>';
+        mt+='Actual the storing is simply done in a File for each Json, <br />performance is no issue and unixoid filesystem are very fast and stable.<br />';
+        mt+='If you are planning to store more than 300.000 files you could think for adopting it to storing in a database.';
+    }
+    if (MType == 'Api') {
+        mt+='<b>Store new Data: </b><br />';
+        mt+='Post Call to http://servername:port/new <br />';
+        mt+='Result: responseText with the id for getting the Json back<br />';
+        mt+='<b>Get Data:</b><br />';
+        mt+='Get Call to http://servername:port/:id<br />';
+        mt+='Server Response OK 200<br />';
+        mt+='<b>Update Data:</b><br />';
+        mt+='Post Call to http://servername:port/:id <br />';
+        mt+='Server Response OK 200';
+    }
+    document.getElementById('message').innerHTML = mt;
+}
+return my;
+})();
+/* ]]> */
+</script>
+
+
+<div id="header">
+    <h1 id="title">{ } json.store.simple</h1>
+    <div id="subTitle">A simple JSON store for your web or mobile app</div><div align="right"><a href="javascript:exportToGlobal.fillWithTestData();">fill with test data</a></div>
+    
+</div>
+
+<div id="home">
+    <form accept-charset="UTF-8" action="javascript:exportToGlobal.postJson();" method="post" name="jContent"><div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+    <div><textarea class="data" id="data" name="data" placeholder="Enter your valid JSON data here.">
+</textarea></div>
+    <div><a href="#"><input class="postButton" name="commit" type="submit" value="Save" /></a></div>
+</form><div id="result" align="middle"></div></div>
+
+<div id="footer">
+    &copy; 2015 json.store.simple 1.0.3beta <a data-no-turbolink="true" href="javascript:exportToGlobal.writeSomeMessage('About');">About</a> <a data-no-turbolink="true" href="javascript:exportToGlobal.writeSomeMessage('Api');">API - (CORS enabled)</a>  <div id="footerStats">30 JSONs stored</div>
+</div>
+
+
+<div id="message">
+</div>
+
+</body>
+</html>

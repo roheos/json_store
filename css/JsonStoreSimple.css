@@ -1,0 +1,216 @@
+body {
+    background: url("../img/bg-noise.jpg") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #333;
+    font-family: "Nova Square",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+}
+div, p, body, textarea, pre {
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: #07c;
+    text-decoration: none;
+}
+.error {
+    color: #cd0000;
+}
+input[readonly="readonly"], textarea[readonly="readonly"] {
+    background-color: transparent !important;
+    color: #333;
+    outline-width: 0;
+    transition: all 0.1s ease-in-out 0s;
+}
+textarea[readonly="readonly"]:hover {
+    background: none repeat scroll 0 0 #fff !important;
+    transition: all 0.1s ease-in-out 0s;
+}
+#header {
+    margin: 0 auto;
+    padding: 4px 16px 2px;
+    position: relative;
+    width: 800px;
+}
+#header h1#title {
+    color: #bbb;
+    font-size: 64px;
+    letter-spacing: -2px;
+    margin: 12px 0 0;
+    padding: 0;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.8);
+}
+#header h1#title a {
+    color: #bbb;
+    opacity: 1;
+    text-decoration: none;
+    transition: opacity 0.1s ease-in-out 0s;
+}
+#header h1#title a:hover {
+    opacity: 0.8;
+}
+#header div#subTitle {
+    margin-top: -8px;
+    text-align: left;
+}
+#header div#createLink {
+    bottom: 2px;
+    position: absolute;
+    right: 16px;
+}
+#footer {
+    color: #999;
+    font-size: 13px;
+    margin: 32px auto 16px;
+    padding: 0 16px;
+    width: 800px;
+}
+#footer a {
+    margin-left: 12px;
+}
+#footer #footerStats {
+    float: right;
+    font-size: 13px;
+    padding-right: 1px;
+}
+
+#message {
+    margin: 0 auto 24px;
+    padding: 0 16px;
+    width: 800px;
+    color: #999;
+    font-size: 13px;
+    margin: 32px auto 16px;
+    padding: 0 16px;
+    width: 800px;
+}
+
+#home {
+    margin: 0 auto 24px;
+    padding: 0 16px;
+    width: 800px;
+}
+#home .linedwrap {
+    margin: 0 auto;
+}
+#home textarea.data {
+    background: none repeat scroll 0 0 #fff;
+    border: 0 none !important;
+    color: #555;
+    font-family: monospace !important;
+    font-size: 8pt !important;
+    height: 300px;
+    line-height: normal !important;
+    outline-width: 0;
+    width: 806px;
+}
+#home div#jsonURI {
+    margin-top: 16px;
+}
+#home input.uri {
+    background: none repeat scroll 0 0 #fff !important;
+    border: 2px solid #bbb;
+    border-radius: 6px;
+    color: #333;
+    font-size: 13px;
+    height: 28px;
+    padding: 0 16px;
+    width: 230px;
+}
+#home form input[type="submit"] {
+    background: none repeat scroll 0 0 transparent;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    color: #555;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px 0;
+    padding: 6px 22px;
+    font-family: "Nova Square",Helvetica,Arial,sans-serif;
+}
+#home form input[type="submit"]:hover {
+    background: none repeat scroll 0 0 #fff;
+    border: 2px solid #bbb;
+    border-radius: 6px;
+    color: #333;
+    text-decoration: none;
+}
+#home form input[type="submit"][disabled], #home form input[type="submit"][disabled]:hover {
+    background: none repeat scroll 0 0 transparent;
+    border: 2px solid #ddd;
+    color: #999;
+    cursor: not-allowed;
+}
+#home .postButton[disabled], #home .postButton[disabled]:hover {
+    cursor: not-allowed;
+}
+#home #notice {
+    margin-top: 10px;
+}
+#staticPage {
+    margin: 0 auto;
+    padding: 0 16px;
+    width: 800px;
+}
+#staticPage #content h3.title {
+    margin: 0 0 15px;
+    padding: 0;
+}
+#staticPage #content {
+    background: none repeat scroll 0 0 #fff;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    padding: 16px 16px 24px;
+}
+#staticPage #content div.doc {
+    background: none repeat scroll 0 0 #fafafa;
+    border: 1px solid #bbb;
+    color: #007000;
+    padding: 8px;
+}
+#staticPage #content div.doc pre {
+    font-size: 13px;
+}
+textarea {
+    resize: both;
+}
+.linedwrap {
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    display: inline-block;
+    padding: 3px;
+}
+.linedtextarea {
+    margin: 0;
+    padding: 0;
+}
+.linedtextarea textarea, .linedwrap .codelines .lineno {
+    font-family: monospace;
+    font-size: 8pt;
+    line-height: normal !important;
+}
+.linedtextarea textarea {
+    border: 0 none;
+    padding-right: 0.3em;
+    padding-top: 0.3em;
+}
+.linedwrap .lines {
+    border-right: 1px solid #ddd;
+    float: left;
+    margin-right: 0;
+    margin-top: 0;
+    overflow: hidden;
+    width: 50px;
+}
+.linedwrap .codelines {
+    padding-top: 1px;
+}
+.linedwrap .codelines .lineno {
+    color: #aaaaaa;
+    padding-right: 0.5em;
+    padding-top: 0;
+    text-align: right;
+    white-space: nowrap;
+}
+.linedwrap .codelines .lineselect {
+    color: red;
+}

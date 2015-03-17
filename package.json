@@ -1,0 +1,27 @@
+{
+  "name":"JsonStoreSimple",
+  "description":"a web service with rest api for simple storing any json data in files",
+  "version":"0.0.1",
+  "author":"thatsme <you.name@example.org>",
+  "private": true,
+  "license":"MIT",
+  "scripts": {
+    "start": "node JsonStoreSimple.js"
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/nodejitsu/browsenpm.org"
+  },
+  "keywords": [
+  "jsonstoresimple",
+  "json",
+  "storage",
+  "webservice"
+  ],
+  "dependencies": {
+    "body-parser": "^1.12",
+    "express": "^4.11.0",
+    "cors":">=0.9",
+    "fs": "^0.0.2"
+  }
+}
