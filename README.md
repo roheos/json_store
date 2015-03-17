@@ -43,7 +43,7 @@ adopt following variables in JsonStoreSimple.js
 npm install  
 npm start
 
-to verify functionality (maybe adopt var myJsonUrl='http://127.0.0.1:1212/'; ):
+to verify functionality (maybe adopt var myJsonUrl='http://127.0.0.1:1212/'; in JsonStoreSimple.html ):
 http://127.0.0.1/your_directory/JsonStoreSimple.html
 then in top-right of text-field click on "fill with test data" and then click "save" button
 
