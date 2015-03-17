@@ -32,8 +32,11 @@ download via zip (and unpack) or install via git
 adopt following variables in JsonStoreSimple.js  
 
 `var jsonStoreDir = './jsonstore/'; //if possible a local mount (for performance issues)`
+
 `var debugLevel = 2;      //0 shows nothing, 3 most messages at console.log`
+
 `var randomIdLength = 6; //if you are expecting really lot of json data request this should be set to 8 or 10`
+
 `var portNumber = 1212; //set here or use environment Variable "PORT" to setup`
 
 
