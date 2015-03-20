@@ -16,6 +16,9 @@
   "jsonstoresimple",
   "json",
   "storage",
+  "store",
+  "REST",
+  "API",
   "webservice"
   ],
   "dependencies": {
